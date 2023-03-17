@@ -11,7 +11,7 @@ function App() {
       return;
     }
 
-    setNotes([...notes, { title: newNote, completed: false }]);
+    setNotes([...notes, { title: newNote, isCompleted: false }]);
     setNewNote("");
   };
 
@@ -27,7 +27,7 @@ function App() {
     setNotes(
       notes.map((note, i) => {
         if (i === index) {
-          return { ...note, completed: !note.completed };
+          return { ...note, isCompleted: !note.isCompleted };
         }
         return note;
       })
@@ -48,7 +48,7 @@ function App() {
                 checked={note.completed}
                 onChange={() => handleChecked(index)}
               />
-              <div className='title'>{note.title}</div>
+              <div className='title' style={{ textDecoration: note.isCompleted ? "line-through" : "" }}>{note.title}</div>
               <button onClick={() => handleDeleteNote(index)}>x</button>
             </li>
           ))}
